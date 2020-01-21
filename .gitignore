@@ -1,0 +1,7 @@
+# Build Result
+bin/
+debug/
+obj/
+
+# Visual Studio
+.vscode/
