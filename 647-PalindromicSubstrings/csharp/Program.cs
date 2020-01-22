@@ -8,8 +8,8 @@ namespace csharp
         static void Main(string[] args)
         {
             Solution solution = new Solution();
-            int count = solution.CountSubstrings("abc");
-            int count2 = solution.CountSubstrings("aaa");
+            int count = solution.CountSubstrings2("abc");
+            int count2 = solution.CountSubstrings2("aaa");
         }
     }
 
@@ -45,6 +45,43 @@ namespace csharp
             }
 
             return result.Count;
+        }
+
+        public int CountSubstrings2(string s) 
+        {
+            Dictionary<char, int> result = new Dictionary<char, int>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (result.ContainsKey(s[i]))
+                {
+                    result[s[i]] += 1; 
+                }
+                else
+                {
+                    result.Add(s[i], 1);
+                }
+            }
+
+            int countSum = 0;
+            foreach(var value in result.Values)
+            {
+                countSum += GetSubSum(value);
+            }
+
+            return countSum;
+        }
+
+        private int GetSubSum(int value)
+        {
+            int result = 0;
+            while (value > 0) 
+            {
+                result += value;
+                value--;
+            }
+
+            return result;
         }
     }
 }
